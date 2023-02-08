@@ -1,6 +1,10 @@
-﻿namespace IfElseFirsTask.Controllers;
+﻿using Microsoft.AspNetCore.Mvc;
 
-public class AnimalsController
+namespace IfElseFirsTask.Controllers;
+
+[ApiController]
+[Route("[controller]")]
+public class AnimalsController : ControllerBase
 {
     
 }

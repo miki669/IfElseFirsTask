@@ -1,0 +1,29 @@
+﻿version: '3.4'
+
+services:
+  primarydb:
+    image: postgres:13
+    container_name: if-else
+    restart: always
+    volumes:
+      - ./Context/data/primarydb/:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=${PrimaryDB__user}
+      - POSTGRES_PASSWORD=${PrimaryDB__password}
+      - POSTGRES_DB=${PrimaryDB__database}
+    ports:
+      - "1111:5432"
+  
+  webapi:
+    image: ${DOCKER_REGISTRY-}if-else
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - PrimaryDB__host=primarydb
+      - PrimaryDB__port=5432
+      - PrimaryDB__database=${PrimaryDB__database}
+      - PrimaryDB__user=${PrimaryDB__user}
+      - PrimaryDB__password=${PrimaryDB__password}
+    depends_on:
+      - primarydb

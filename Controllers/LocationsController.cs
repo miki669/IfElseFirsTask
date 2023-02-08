@@ -1,6 +1,10 @@
-﻿namespace IfElseFirsTask.Controllers;
+﻿using Microsoft.AspNetCore.Mvc;
 
-public class LocationsController
+namespace IfElseFirsTask.Controllers;
+
+[ApiController]
+[Route("[controller]")]
+public class LocationsController : ControllerBase
 {
     
 }
